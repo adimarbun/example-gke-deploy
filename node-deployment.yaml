@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node
+  labels:
+    name: node
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+      containers:
+      - name: node
+        image: asia.gcr.io/cloud-run-example-372305/production/brotomotif@sha256:14a45557e089a06ea2fdbaea149428424c758e736b1dd2d0241f3ff4223161f9
+        env:
+        - name: NODE_ENV
+          value: "development"
+        - name: PORT
+          value: "3000"
+      restartPolicy: Always
